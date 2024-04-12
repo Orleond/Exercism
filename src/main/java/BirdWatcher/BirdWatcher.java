@@ -1,4 +1,4 @@
-package main.java;
+package main.java.BirdWatcher;
 
 public class BirdWatcher {
     private final int[] birdsPerDay;
