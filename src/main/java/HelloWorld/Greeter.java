@@ -1,4 +1,4 @@
-package main.java.Greeter;
+package main.java.HelloWorld;
 
 public class Greeter {
     String getGreeting() {
