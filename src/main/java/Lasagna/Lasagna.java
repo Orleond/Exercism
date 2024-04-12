@@ -1,4 +1,4 @@
-package main.java;
+package main.java.Lasagna;
 
 public class Lasagna {
     public int expectedMinutesInOven() {
