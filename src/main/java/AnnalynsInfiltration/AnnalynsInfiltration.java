@@ -1,4 +1,4 @@
-package main.java;
+package main.java.AnnalynsInfiltration;
 
 public class AnnalynsInfiltration {
     public static boolean canFastAttack(boolean knightIsAwake) {
