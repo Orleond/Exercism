@@ -8,7 +8,7 @@ ____
  - [x] [Задача 4. Наблюдатель за птицами](#task4)
  - [x] [Задача 5. Языки Карла](#task5)
  - [x] [Задача 6. Калькулятор: загадка](#task6)
- - [ ] [Задача 7. Кристально чистый](#task7)
+ - [x] [Задача 7. Кристально чистый](#task7)
  - [ ] [Задача 8. Игрушечная машина Илона](#task8)
  - [ ] [Задача 9. Жажда скорости](#task9)
  - [ ] [Задача 10. Конкурс дистанционного управления](#task10)
@@ -454,4 +454,47 @@ calculator.calculate(10, 1, "-");
 ``` Java
 calculator.calculate(512, 0, "/");
 // => throws IllegalOperationException with message "Division by zero is not allowed"
+```
+
+___
+
+### <a name="task7">Задача 7. Кристально чистый</a>
+###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/SqueakyClean/SqueakyClean.java)
+В этом упражнении вы реализуете частичный набор служебных процедур, которые помогут разработчику очищать имена `SqueakyClean`.
+
+Выполняя 4 задания, вы постепенно разработаете метод `clean`. Допустимое имя `SqueakyClean` состоит из нуля или более букв и знаков подчеркивания.
+
+Во всех случаях входная строка гарантированно будет ненулевой. Обратите внимание на то, что пустые строки являются ненулевыми.
+<br>
+
+#### ___Задание 1. Замените все пробелы подчеркиваниями___
+Напишите реализацию статического метода `SqueakyClean.clean()`, чтобы заменить любые пробелы подчеркиваниями. Это также относится к ведущим и конечным пробелам.
+``` Java
+SqueakyClean.clean("my   Id");
+// => "my___Id"
+```
+<br>
+
+#### ___Задание 2. Преобразуйте kebab-case в camelCase___
+Измените реализацию статического метода `SqueakyClean.clean()` так, чтобы он преобразовывал kebab-case в camelCase ([Справка по кейсам](https://medium.com/@vladimirmorulus/%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D0%BE-case-camelcase-kebab-case-pascalcase-snake-case-%D0%B8-%D0%B2%D1%81%D0%B5-case-ecda10463fa8)).
+``` Java
+SqueakyClean.clean("my   Id");
+// => "my___Id"
+```
+<br>
+
+#### ___Задание 3. Преобразуйте [leetspeak](https://ru.wikipedia.org/wiki/Leet) в обычный текст___
+Измените реализацию статического метода `SqueakyClean.clean()` так, чтобы он преобразовывал [leetspeak](https://ru.wikipedia.org/wiki/Leet) в обычный текст. Для простоты мы будем использовать только `4` (A), `3` (E), `0`(O), `1`(L) и `7`(T) из таблицы.
+``` Java
+SqueakyClean.clean("H3ll0 W0rld");
+// => "Hello_World"
+```
+<br>
+
+#### ___Задание 4. Пропускать символы, не являющиеся буквами___
+Измените реализацию статического метода `SqueakyClean.clean()` так, чтобы он исключал любые символы, кроме букв.
+``` Java
+SqueakyClean.clean("H3ll0 W0rld");
+SqueakyClean.clean("a$#.b");
+// => "ab"
 ```
