@@ -7,7 +7,7 @@ ____
  - [x] [Задача 3. Проникновение Анналин](#task3)
  - [x] [Задача 4. Наблюдатель за птицами](#task4)
  - [x] [Задача 5. Языки Карла](#task5)
- - [ ] [Задача 6. Калькулятор: загадка](#task6)
+ - [x] [Задача 6. Калькулятор: загадка](#task6)
  - [ ] [Задача 7. Кристально чистый](#task7)
  - [ ] [Задача 8. Игрушечная машина Илона](#task8)
  - [ ] [Задача 9. Жажда скорости](#task9)
@@ -342,7 +342,7 @@ ___
 
 ### <a name="task5">Задача 5. Языки Карла</a>
 ###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/LanguageList/LanguageList.java)
-Карл хочет отслеживать список языков для изучения на веб-сайте [Exercism](https://exercism.org/). Карлу нужно иметь возможность добавлять новые языки, удалять старые и проверять, есть ли определенные языки в списке. Было бы очень захватывающе, если бы Карл захотел изучить Java или Kotlin!
+Карл хочет отслеживать список языков для изучения на веб-сайте [Exercism](https://exercism.org/). Карлу нужно иметь возможность добавлять новые языки, удалять старые и проверять, есть ли определенные языки в списке. Было бы очень захватывающе, если бы Карл захотел изучить __Java__ или __Kotlin__!
 <br>
 
 #### ___Задание 1. Напишите функцию, которая будет проверять, пуст ли список языков___
@@ -396,4 +396,62 @@ boolean learningRuby = languageList.containsLanguage("Ruby"); // false
 ``` Java
 boolean learningPython = languageList.containsLanguage("Python"); // true
 boolean learningRuby = languageList.containsLanguage("Ruby"); // false
+```
+
+___
+
+### <a name="task6">Задача 6. Калькулятор: загадка</a>
+###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/CalculatorConundrum/CalculatorConundrum.java)
+В этом упражнении вы создадите обработку ошибок для простого целочисленного калькулятора. Для простоты представлены методы вычисления сложения, умножения и деления.
+
+Цель состоит в том, чтобы иметь работающий калькулятор, который возвращает строку со следующим шаблоном: `16 + 51 = 67`, если ему предоставлены аргументы `16`, `51` и `+`.
+``` Java
+CalculatorConundrum calculator = new CalculatorConundrum();
+
+calculator.calculate(16, 51, "+");
+// => returns "16 + 51 = 67"
+
+calculator.calculate(32, 6, "*");
+// => returns "32 * 6 = 192"
+
+calculator.calculate(512, 4, "/");
+// => returns "512 / 4 = 128"
+```
+<br>
+
+#### ___Задание 1. Напишите реализацию метода вычисления, поддерживающего несколько основных операций___
+Основным методом реализации в этой задаче будет метод `CalculatorConundrum.calculate()`. В него требуется передавать три аргумента. Первые два аргумента `operand1` и `operand2` представляют собой целые числа, над которыми будет выполняться операция. Третий аргумент `operation` имеет тип `String`. Для этого упражнения необходимо реализовать следующие арифметические операции:
+
+- добавление с использованием `+` типа `String`
+- умножение с использованием `*` типа `String`
+- деление с использованием `/` типа `String`
+
+<br>
+
+#### ___Задание 2. Обработка ошибочных операций___
+Обновите метод `CalculatorConundrum.calculate()` для обработки ошибочных операций:
+
+- Если аргумент `operation` равен `null`, должно быть выброшено исключение  `IllegalArgumentException` вместе с сообщением `Operation cannot be null`.
+- Если аргумент `operation` равен `""`, должно быть выброшено исключение `IllegalArgumentException` вместе с сообщением `Operation cannot be empty`.
+- Если аргументом `operation` является любая операция, отличная от `+`, `*` или `/`, должно быть выброшено исключение `IllegalOperationException` вместе с сообщением, включающим введенную неверную операцию `Operation '{operation}' does not exist`.
+``` Java
+calculator.calculate(10, 1, null);
+// => throws IllegalArgumentException with message "Operation cannot be null"
+
+calculator.calculate(10, 1, "");
+// => throws IllegalArgumentException with message "Operation cannot be empty"
+
+calculator.calculate(10, 1, "-");
+// => throws IllegalOperationException with message "Operation '-' does not exist"
+```
+
+<br>
+
+#### ___Задание 3. Обработка исключения, возникающего при делении на ноль___
+В __Java__ при попытке деления на ноль выдается ошибка `ArithmeticException`. Обновите метод `CalculatorConundrum.calculate()`, чтобы перехватить это исключение, а затем инициируйте выброс исключюения  `IllegalOperationException`, содержащее сообщение `Division by zero is not allowed` и перехваченное исключение `ArithmeticException` в качестве его причины.
+>[!NOTE]
+>Обратите внимание на то, что в этой задаче вверху окна появилась дополнительная вкладка, содержащая класс [IllegalOperationException](https://github.com/Orleond/Exercism/blob/main/src/main/java/CalculatorConundrum/IllegalOperationException.java). Для большего понимания третьего задания, следует с ним ознакомиться.
+``` Java
+calculator.calculate(512, 0, "/");
+// => throws IllegalOperationException with message "Division by zero is not allowed"
 ```
