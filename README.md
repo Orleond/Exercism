@@ -12,7 +12,7 @@ ____
  - [x] [Задача 8. Игрушечная машина Илона](#task8)
  - [x] [Задача 9. Жажда скорости](#task9)
  - [x] [Задача 10. Конкурс дистанционного управления](#task10)
- - [ ] [Задача 11. Машинки, соберитесь!](#task11)
+ - [x] [Задача 11. Машинки, соберитесь!](#task11)
  - [ ] [Задача 12. Уровни журналов](#task12)
  - [ ] [Задача 13. Калькулятор зарплаты](#task13)
  - [ ] [Задача 14. Отчеты о футбольных матчах](#task14)
@@ -524,7 +524,7 @@ SqueakyClean.clean("H3ll0 W0rld");
 SqueakyClean.clean("a$#.b");
 // => "ab"
 ```
-
+___
 
 ### <a name="task8">Задача 8. Игрушечная машина Илона</a>
 ###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/ElonsToyCar/ElonsToyCar.java)
@@ -609,73 +609,37 @@ car.distanceDisplay();
 car.batteryDisplay();
 // => "Battery empty"
 ```
+___
 
+### <a name="task11">Задача 11. Машинки, соберитесь!</a>
+###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/CarsAssemble/CarsAssemble.java)
+В этом упражнении вы будете писать код для анализа производства на сборочной линии автомобильного завода. Скорость сборочной линии может варьироваться от 0(выкл.) до 10(максимум).
 
-### <a name="task10">Задача 10. Конкурс дистанционного управления</a>
-###### [Решение](https://github.com/Orleond/Exercism/tree/main/src/main/java/RemoteControlCompetition) (Содержит 4 класса: [ExperimentalRemoteControlCar](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/ExperimentalRemoteControlCar.java), [ProductionRemoteControlCar](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/ProductionRemoteControlCar.java), [RemoteControlCar](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/RemoteControlCar.java) и [TestTrack](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/TestTrack.java))
-В этом упражнении вы поработаете с машинами на дистанционным управлении.
+При самой низкой скорости (1) каждый час производится 221 автомобиль. Производство увеличивается линейно со скоростью. Таким образом, при скорости, установленной на 4, должно производиться 4 * 221 = 884 автомобиля в час. Однако более высокие скорости увеличивают вероятность выпуска неисправных автомобилей, которые затем придется выбросить. В следующей таблице показано, как скорость влияет на вероятность успеха:
 
-Разработан экспериментальный автомобиль, и испытательный полигон необходимо адаптировать для работы как с серийными, так и с экспериментальными моделями. Оба типа автомобилей уже построены, и вам нужно найти способ испытать их на испытательном треке.
+- от 1 до 4: 100% вероятность успеха.
+- от 5 до 8: 90% успеха.
+- 9: 80% успеха.
+- 10: 77% успеха.
 
-Кроме того, серийные автомобили достигают определённых успехов. Руководитель команды стремится поддерживать дух соревнования, публикуя рейтинг серийных автомобилей.
+У вас есть два задания.
 <br>
 
 ___
-#### ___Задание 1. Реализация интерфейса___
-Добавьте в интерфейс `RemoteControlCar` два метода:
-
-- `drive()`, ничего не возвращает;
-- `getDistanceTravelled()`, возвращая `int`.
-
-Затем напишите реализацию классов `ProductionRemoteControlCar` и `ExperimentalRemoteControlCar`, которые реализуют все методов, имеющиеся в наследуемом интерфейсе.
-
-<br>
-
-___
-#### ___Задание 2. Вождение машины___
-При каждом вызове `.drive()` автомобиль должен проезжать определенное расстояние:
-
-- `ProductionRemoteControlCar` проезжает 10 единиц;
-- `ExperimentalRemoteControlCar` проезжает 20 единиц.
-
-Метод `.getDistanceTravelled()` должен возвращать количество единиц, которые автомобиль проехал за время своего существования.
+#### ___Задание 1. Рассчитать производительность в час___
+Напишите реализацию метода `CarsAssemble.productionRatePerHour()` для расчета производительности сборочной линии в час с учетом текущей скорости сборочной линии:
 ``` Java
-ProductionRemoteControlCar prod = new ProductionRemoteControlCar();
-prod.drive();
-prod.getDistanceTravelled();
-// => 10
-        
-ExperimentalRemoteControlCar exp = new ExperimentalRemoteControlCar();
-exp.drive();
-exp.getDistanceTravelled();
-// => 20
+CarsAssemble.productionRatePerHour(6)
+// => 1193.4
 ```
 <br>
 
 ___
-#### ___Задание 3. Гонка___
-Напишите реализацию метода `TestTrack.race(RemoteControlCar car)`, в котором экземпляры `cars` вызывают метод `drive()`.
-``` Java
-TestTrack.race(new ProductionRemoteControlCar());
-TestTrack.race(new ExperimentalRemoteControlCar());
-// this should execute without an exception being thrown
-```
-<br>
+#### ___Задание 2. Рассчитать количество рабочих изделий, производимых в минуту___
+Напишите реализацию метода `CarsAssemble.productionRatePerHour()` для расчета производительности сборочной линии в час с учетом текущей скорости сборочной линии:
 
-___
-#### ___Задание 4. Реализовать сортировку серийных автомобилей___
-Напишите реализацию интерфейса `Comparable<T>` в класса `ProductionRemoteControlCar`. По умолчанию порядок сортировки автомобилей должен быть по убыванию побед.
-
-Напишите реализацию статического метода `TestTrack.getRankedCars()`, который возвращает автомобили, отсортированные по убыванию количества побед.
+Обратите внимание, что возвращаемое значение типа `int`
 ``` Java
-ProductionRemoteControlCar prc1 = new ProductionRemoteControlCar();
-ProductionRemoteControlCar prc2 = new ProductionRemoteControlCar();
-prc1.setNumberOfVictories(2);
-prc2.setNumberOfVictories(3);
-List<ProductionRemoteControlCar> unsortedCars = new ArrayList<>();
-unsortedCars.add(prc1);
-unsortedCars.add(prc2);
-List<ProductionRemoteControlCar> rankings = TestTrack.getRankedCars(unsortedCars);
-// => rankings.get(0) == prc2
-// => rankings.get(1) == prc1
+CarsAssemble.workingItemsPerMinute(6)
+// => 19
 ```
