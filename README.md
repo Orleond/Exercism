@@ -17,7 +17,7 @@ ____
  - [x] [Задача 13. Калькулятор зарплаты](#task13)
  - [x] [Задача 14. Отчеты о футбольных матчах](#task14)
  - [x] [Задача 15. Волшебники и воины](#task15)
- - [ ] [Задача 16. Журналы, журналы, журналы!](#task16)
+ - [x] [Задача 16. Журналы, журналы, журналы!](#task16)
  - [ ] [Задача 17. Тим из маркетинга](#task17)
  - [ ] [Задача 18. Журнал капитана](#task18)
  - [ ] [Задача 19. Бронирование для красоты](#task19)
@@ -611,6 +611,170 @@ car.batteryDisplay();
 ```
 ___
 
+
+### <a name="task9">Задача 9. Жажда скорости</a>
+###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/NeedForSpeed/NeedForSpeed.java)
+В этом упражнении вы будете организовывать гонки между различными типами машин с дистанционным управлением. У каждого автомобиля свои характеристики скорости и расхода аккумулятора.
+
+Автомобили заводятся с полностью заряженными (100%) аккумуляторами. Каждый раз, когда вы управляете автомобилем с помощью пульта дистанционного управления, он измеряет скорость автомобиля в метрах и уменьшает процент оставшегося заряда батареи.
+
+Если уровень заряда аккумулятора автомобиля ниже процента разряда, вы больше не сможете управлять автомобилем.
+
+У каждой гоночной трассы своя дистанция. Автомобили проходят проверку, смогут ли они проехать трассу, не разрядив аккумулятор.
+
+У вас есть шесть заданий, каждое из которых будет работать с экземплярами дистанционно управляемых автомобилей.
+<br>
+
+___
+#### ___Задание 1. Создание автомобиля с дистанционным управлением___
+Разрешите создание автомобиля с дистанционным управлением, определив конструктор для класса `NeedForSpeed`, который принимает в качестве двух параметров скорость автомобиля в метрах и процент разряда батареи (оба типа `int`):
+``` Java
+int speed = 5;
+int batteryDrain = 2;
+var car = new NeedForSpeed(speed, batteryDrain);
+```
+<br>
+
+___
+#### ___Задание 2. Создание гоночной трассы___
+Организуйте создание гоночной трассы, определив конструктор для класса `RaceTrack`, который принимает в качестве единственного параметра расстояние трассы в метрах (типа `int`):
+``` Java
+int distance = 800;
+var raceTrack = new RaceTrack(distance);
+```
+<br>
+
+___
+#### ___Задание 3. Вести машину___
+Напишите реализацию метода `NeedForSpeed.drive()`, который обновляет количество пройденных метров в зависимости от скорости автомобиля. Также напишите реализацию метода `NeedForSpeed.distanceDriven()`, возвращающего количество метров, пройденных автомобилем:
+``` Java
+int speed = 5;
+int batteryDrain = 2;
+var car = new NeedForSpeed(speed, batteryDrain);
+car.drive();
+
+car.distanceDriven();
+// => 5
+```
+<br>
+
+___
+#### ___Задание 4. Проверьте, разряжен ли аккумулятор___
+Обновите реализацию метода `NeedForSpeed.drive()` так, чтобы при езде разряжался аккумулятор автомобиля. Также напишите реализацию метода `NeedForSpeed.batteryDrained()`, который указывает, разряжен ли аккумулятор:
+``` Java
+int speed = 5;
+int batteryDrain = 2;
+var car = new NeedForSpeed(speed, batteryDrain);
+car.drive();
+
+car.batteryDrained();
+// => false
+```
+<br>
+
+___
+#### ___Задание 5. Создайте машинку с дистанционным управлением с нитро ускорением___
+Самым продаваемым автомобилем с дистанционным управлением является машина с нитро ускорением, которая развивает потрясающую максимальную скорость 50 метров при разряде аккумулятора 4%. Напишите реализацию статического метода `NeedForSpeed.nitro()` для возврата автомобиля такого типа:
+``` Java
+var car = NeedForSpeed.nitro();
+car.drive();
+car.distanceDriven();
+// => 50
+```
+<br>
+
+___
+#### ___Задание 6. Проверьте, сможет ли машина с дистанционным управлением финишировать в гонке___
+Чтобы финишировать в гонке, автомобиль должен проехать трек определенной дистанции. Это означает, что аккумулятора должно хватить до пересечения финишной черты. Напишите реализацию метода `RaceTrack.tryFinishTrack()`, который принимает экземпляр `NeedForSpeed` в качестве параметра и возвращает значение `true`, если машина может финишировать в гонке; в противном случае возвращается `false`:
+``` Java
+int speed = 5;
+int batteryDrain = 2;
+var car = new NeedForSpeed(speed, batteryDrain);
+
+int distance = 100;
+var race = new RaceTrack(distance);
+
+car.distanceDriven()
+// => 0
+
+race.tryFinishTrack(car);
+// => true
+
+car.distanceDriven()
+// => 100
+```
+___
+
+
+### <a name="task10">Задача 10. Конкурс дистанционного управления</a>
+###### [Решение](https://github.com/Orleond/Exercism/tree/main/src/main/java/RemoteControlCompetition) (Содержит 4 класса: [ExperimentalRemoteControlCar](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/ExperimentalRemoteControlCar.java), [ProductionRemoteControlCar](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/ProductionRemoteControlCar.java), [RemoteControlCar](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/RemoteControlCar.java) и [TestTrack](https://github.com/Orleond/Exercism/blob/main/src/main/java/RemoteControlCompetition/TestTrack.java))
+В этом упражнении вы поработаете с машинами на дистанционным управлении.
+
+Разработан экспериментальный автомобиль, и испытательный полигон необходимо адаптировать для работы как с серийными, так и с экспериментальными моделями. Оба типа автомобилей уже построены, и вам нужно найти способ испытать их на испытательном треке.
+
+Кроме того, серийные автомобили достигают определённых успехов. Руководитель команды стремится поддерживать дух соревнования, публикуя рейтинг серийных автомобилей.
+<br>
+
+___
+#### ___Задание 1. Реализация интерфейса___
+Добавьте в интерфейс `RemoteControlCar` два метода:
+
+- `drive()`, ничего не возвращает;
+- `getDistanceTravelled()`, возвращая `int`.
+
+Затем напишите реализацию классов `ProductionRemoteControlCar` и `ExperimentalRemoteControlCar`, которые реализуют все методы, имеющиеся в наследуемом интерфейсе.
+<br>
+
+___
+#### ___Задание 2. Вождение машины___
+При каждом вызове `.drive()` автомобиль должен проезжать определенное расстояние:
+- `ProductionRemoteControlCar` проезжает 10 единиц;
+- `ExperimentalRemoteControlCar` проезжает 20 единиц.
+
+Метод `.getDistanceTravelled()` должен возвращать количество единиц, которые автомобиль проехал за время своего существования.
+``` Java
+ProductionRemoteControlCar prod = new ProductionRemoteControlCar();
+prod.drive();
+prod.getDistanceTravelled();
+// => 10
+
+ExperimentalRemoteControlCar exp = new ExperimentalRemoteControlCar();
+exp.drive();
+exp.getDistanceTravelled();
+// => 20
+```
+<br>
+
+___
+#### ___Задание 3. Гонка___
+Напишите реализацию метода `TestTrack.race(RemoteControlCar car)`, в котором экземпляры `cars` вызывают метод `drive()`.
+``` Java
+TestTrack.race(new ProductionRemoteControlCar());
+TestTrack.race(new ExperimentalRemoteControlCar());
+// this should execute without an exception being thrown
+```
+<br>
+
+___
+#### ___Задание 4. Реализовать сортировку серийных автомобилей___
+Напишите реализацию интерфейса `Comparable<T>` в класса `ProductionRemoteControlCar`. По умолчанию порядок сортировки автомобилей должен быть по убыванию побед.
+
+Напишите реализацию статического метода `TestTrack.getRankedCars()`, который возвращает автомобили, отсортированные по убыванию количества побед.
+``` Java
+ProductionRemoteControlCar prc1 = new ProductionRemoteControlCar();
+ProductionRemoteControlCar prc2 = new ProductionRemoteControlCar();
+prc1.setNumberOfVictories(2);
+prc2.setNumberOfVictories(3);
+List<ProductionRemoteControlCar> unsortedCars = new ArrayList<>();
+unsortedCars.add(prc1);
+unsortedCars.add(prc2);
+List<ProductionRemoteControlCar> rankings = TestTrack.getRankedCars(unsortedCars);
+// => rankings.get(0) == prc2
+// => rankings.get(1) == prc1
+```
+___
+
+
 ### <a name="task11">Задача 11. Машинки, соберитесь!</a>
 ###### [Решение](https://github.com/Orleond/Exercism/blob/main/src/main/java/CarsAssemble/CarsAssemble.java)
 В этом упражнении вы будете писать код для анализа производства на сборочной линии автомобильного завода. Скорость сборочной линии может варьироваться от 0(выкл.) до 10(максимум).
@@ -870,4 +1034,33 @@ Warrior warrior = new Warrior();
 wizard.prepareSpell();
 wizard.getDamagePoints(warrior);
 // => 12
+```
+___
+
+### <a name="task16">Задача 16. Журналы, журналы, журналы!</a>
+###### [Решение](https://github.com/Orleond/Exercism/tree/main/src/main/java/LogsLogsLogs)
+В этом упражнении вы играете в ролевую игру, в которой бойцы разных типов могут сражаться друг с другом. В игре действуют разные правила для каждого типа бойцов. Мы собираемся сосредоточиться на двух конкретных типах: Волшебниках и Воинах.
+
+Для Воина следующие правила:
+
+- Воин никогда не бывает уязвимым.
+- Воин наносит 6 очков урона, если боец, которого он атакует, не уязвим.
+- Воин наносит 10 очков урона, если боец, которого он атакует, уязвим.
+
+
+Для Волшебника действуют следующие правила:
+
+- Волшебник может подготовить заклинание заранее.
+- Волшебник уязвим, если он заранее не подготовил заклинание.
+- Волшебник наносит 12 очков урона, если заранее подготовил заклинание.
+- Волшебник наносит 3 очка урона, если не подготовил заклинание заранее.
+<br>
+
+___
+#### ___Задание 2. Опишите класс воина___
+Обновите класс `Warrior`, чтобы его метод `toString()` описывал, что это за боец. Метод должен возвращать строку `"Fighter is a Warrior"`.
+``` Java
+Warrior warrior = new Warrior();
+warrior.toString();
+// => "Fighter is a Warrior"
 ```
